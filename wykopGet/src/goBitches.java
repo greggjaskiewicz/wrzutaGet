@@ -27,13 +27,12 @@ public class goBitches
     try
     {
       String filename = inurl.split("/")[4];
-      String victim = inurl.split("/")[2].split("\\.")[0];
-
+      String victim = inurl.split("/")[2].replace(".wrzuta.pl", "");
 
       Random random = new Random();
       random.setSeed(System.currentTimeMillis());
 
-      String requestUrl = "http://" + victim + ".wrzuta.pl/xml/filename/" + filename + "/wrzuta.pl/pl/" + random.nextInt();
+      String requestUrl = "http://" + victim + ".wrzuta.pl/xml/plik/" + filename + "/wrzuta.pl/undefined/" + Math.abs(random.nextInt());
 
 
       URL url = new URL(requestUrl);
@@ -45,7 +44,7 @@ public class goBitches
       String line;
       String lines = "";
 
-      /* read all bloody lines */
+      // read all bloody lines
       while ((line = bufferedreader.readLine()) != null)
       {
         lines += line;
@@ -61,13 +60,12 @@ public class goBitches
       }
 
       bitchesUrl = slave;
-
     }
     catch (Exception exception)
     {
       System.out.println((new StringBuilder()).append("Exception e = ").append(exception).toString());
       exception.printStackTrace();
-      bitchesUrl = "error";
+      bitchesUrl = null;
     }
 
     return bitchesUrl;

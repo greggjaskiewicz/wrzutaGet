@@ -76,11 +76,15 @@ public class WykopGet
           }
           else
           {
-            System.out.println(strLine + " -> " + dl);
+            System.out.println(dl);
           }
         }
       }
       in.close();
+      if (null != outfile)
+      {
+        outfile.close();
+      }
     }
     catch(Exception e)
     {
