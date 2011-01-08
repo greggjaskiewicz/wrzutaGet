@@ -14,7 +14,7 @@ public class WykopGet
 {
   public static void main(String[] args)
   {
-    System.out.println(args.length);
+
     if (0 == args.length || 2 < args.length)
     {
       System.out.println("give us a file with wykop URLs and another name if you want it to be saved there!");
