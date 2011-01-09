@@ -42,6 +42,12 @@ public class goBitches
   public String getTheBitch(String inurl, String agent)
   {
     String bitchesUrl;
+
+    if (!inurl.matches("http://") || !inurl.matches("wrzuta.pl"))
+    {
+      return null;
+    }
+
     try
     {
       String filename = inurl.split("/")[4];
@@ -75,11 +81,11 @@ public class goBitches
 
       bitchesUrl = slave;
     }
-    catch (Exception exception)
+    catch (Exception e)
     {
-      System.out.println((new StringBuilder()).append("Exception e = ").append(exception).toString());
-      exception.printStackTrace();
-      bitchesUrl = null;
+      System.err.println("buggered in getTheBitch sunshine, Reason: " + e.toString());
+      e.printStackTrace();
+      return null;
     }
 
     return bitchesUrl;

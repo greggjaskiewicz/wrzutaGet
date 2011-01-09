@@ -28,6 +28,7 @@ public class wrzutaGet
     FileInputStream infile;
     DataInputStream in;
     BufferedReader br;
+    int count = 0;
 
     try
     {
@@ -38,8 +39,8 @@ public class wrzutaGet
     }
     catch (Exception e)
     {
-      System.out.println("failed to open the source file \"" + args[0] + "\" bitch");
-      System.out.print("Reason: " + e.toString());
+      System.err.println("failed to open the source file \"" + args[0] + "\" bitch");
+      System.err.print("Reason: " + e.toString());
       return;
     }
 
@@ -52,8 +53,8 @@ public class wrzutaGet
     }
     catch (Exception e)
     {
-      System.out.println("failed to open the destination file \"" + args[1] + "\" bitch");
-      System.out.print("Reason: " + e.toString());
+      System.err.println("failed to open the destination file \"" + args[1] + "\" bitch");
+      System.err.print("Reason: " + e.toString());
       return;
     }
 
@@ -73,10 +74,11 @@ public class wrzutaGet
           {
             outfile.write(dl);
             outfile.write(System.getProperty("line.separator"));
+            count++;
           }
           else
           {
-            System.out.println(dl);
+            System.err.println("Skipping: '" + strLine + "', wrong URL type");
           }
         }
       }
@@ -88,11 +90,11 @@ public class wrzutaGet
     }
     catch (Exception e)
     {
-      System.out.println("the job has failed, bitch");
-      System.out.print("Reason: " + e.toString());
+      System.err.println("the job has failed, bitch");
+      System.err.print("Reason: " + e.toString());
       return;
     }
 
-    System.out.println("done, bitches!");
+    System.err.println("done " + count + " , bitches!");
   }
 }
