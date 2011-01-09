@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="wykopget" default="all">
+  
+  
+  <property file="wykopget.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="128m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/.pyc/**"/>
+    <exclude name="**/.pyo/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/*.lib/**"/>
+    <exclude name="**/*~/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.zip"/>
+    <include name="*.war"/>
+    <include name="*.egg"/>
+    <include name="*.ear"/>
+    <include name="*.swc"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <include name="**/?*.properties"/>
+    <include name="**/?*.xml"/>
+    <include name="**/?*.gif"/>
+    <include name="**/?*.png"/>
+    <include name="**/?*.jpeg"/>
+    <include name="**/?*.jpg"/>
+    <include name="**/?*.html"/>
+    <include name="**/?*.dtd"/>
+    <include name="**/?*.tld"/>
+    <include name="**/?*.ftl"/>
+  </patternset>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module wykopGet -->
+  
+  <dirname property="module.wykopget.basedir" file="${ant.file}"/>
+  
+  
+  
+  <property name="compiler.args.wykopget" value="${compiler.args}"/>
+  
+  <property name="wykopget.output.dir" value="${module.wykopget.basedir}/out/production/wykopGet"/>
+  <property name="wykopget.testoutput.dir" value="${module.wykopget.basedir}/out/test/wykopGet"/>
+  
+  <path id="wykopget.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="wykopget.module.production.classpath"/>
+  
+  <path id="wykopget.runtime.production.module.classpath">
+    <pathelement location="${wykopget.output.dir}"/>
+  </path>
+  
+  <path id="wykopget.module.classpath">
+    <pathelement location="${wykopget.output.dir}"/>
+  </path>
+  
+  <path id="wykopget.runtime.module.classpath">
+    <pathelement location="${wykopget.testoutput.dir}"/>
+    <pathelement location="${wykopget.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.wykopget">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.wykopget">
+    <patternset refid="excluded.from.module.wykopget"/>
+  </patternset>
+  
+  <path id="wykopget.module.sourcepath">
+    <dirset dir="${module.wykopget.basedir}/wykopGet">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.wykopget" depends="compile.module.wykopget.production,compile.module.wykopget.tests" description="Compile module wykopGet"/>
+  
+  <target name="compile.module.wykopget.production" description="Compile module wykopGet; production classes">
+    <mkdir dir="${wykopget.output.dir}"/>
+    <javac destdir="${wykopget.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
+      <compilerarg line="${compiler.args.wykopget}"/>
+      <bootclasspath refid="wykopget.module.bootclasspath"/>
+      <classpath refid="wykopget.module.production.classpath"/>
+      <src refid="wykopget.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.wykopget"/>
+    </javac>
+    
+    <copy todir="${wykopget.output.dir}">
+      <fileset dir="${module.wykopget.basedir}/wykopGet/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.wykopget.tests" depends="compile.module.wykopget.production" description="compile module wykopGet; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.wykopget" description="cleanup module">
+    <delete dir="${wykopget.output.dir}"/>
+    <delete dir="${wykopget.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.wykopget" description="cleanup all"/>
+
+  <jar destfile="wykopGet.jar" basedir="${wykopget.output.dir}">
+    <manifest>
+      <attribute name="Main-Class"
+            value="WykopGet"/>
+    </manifest>
+  </jar>
+  
+  <target name="build.modules" depends="init, clean, compile.module.wykopget" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
+</project>
+
