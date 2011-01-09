@@ -1,4 +1,3 @@
-
 /**
  * User: gj
  * Date: 08/01/2011
@@ -15,7 +14,6 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.security.SecureRandom;
-import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,16 +26,16 @@ public class goBitches
   {
     try
     {
-      random = SecureRandom. getInstance("SHA1PRNG");
+      random = SecureRandom.getInstance("SHA1PRNG");
     }
-    catch(Exception e)
+    catch (Exception e)
     {
     }
 
     if (null == random)
     {
       random = new SecureRandom();
-      random.setSeed(System.currentTimeMillis()/666);
+      random.setSeed(System.currentTimeMillis() / 666);
     }
   }
 

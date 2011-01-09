@@ -36,10 +36,10 @@ public class WykopGet
       br = new BufferedReader(new InputStreamReader(in));
 
     }
-    catch(Exception e)
+    catch (Exception e)
     {
-      System.out.println("failed to open the source file \""+args[0]+"\" bitch");
-      System.out.print("Reason: "+e.toString());
+      System.out.println("failed to open the source file \"" + args[0] + "\" bitch");
+      System.out.print("Reason: " + e.toString());
       return;
     }
 
@@ -48,12 +48,12 @@ public class WykopGet
     try
     {
       if (2 == args.length)
-      outfile = new FileWriter(args[1], false);
+      { outfile = new FileWriter(args[1], false); }
     }
-    catch(Exception e)
+    catch (Exception e)
     {
-      System.out.println("failed to open the destination file \""+args[1]+"\" bitch");
-      System.out.print("Reason: "+e.toString());
+      System.out.println("failed to open the destination file \"" + args[1] + "\" bitch");
+      System.out.print("Reason: " + e.toString());
       return;
     }
 
@@ -62,7 +62,7 @@ public class WykopGet
       String strLine;
       goBitches bitches = new goBitches();
 
-      while((strLine = br.readLine()) != null)
+      while ((strLine = br.readLine()) != null)
       {
         strLine = strLine.trim();
         if (!"".equals(strLine))
@@ -86,10 +86,10 @@ public class WykopGet
         outfile.close();
       }
     }
-    catch(Exception e)
+    catch (Exception e)
     {
       System.out.println("the job has failed, bitch");
-      System.out.print("Reason: "+e.toString());
+      System.out.print("Reason: " + e.toString());
       return;
     }
 
