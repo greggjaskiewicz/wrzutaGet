@@ -43,10 +43,18 @@ public class goBitches
   {
     String bitchesUrl;
 
-    if (!inurl.matches("http://") || !inurl.matches("wrzuta.pl"))
+    if (!inurl.contains("http://"))
     {
+      System.err.println("not a URL");
       return null;
     }
+
+    if (!inurl.contains("wrzuta.pl"))
+    {
+      System.err.println("not wrzuta.pl url");
+      return null;
+    }
+
 
     try
     {
@@ -92,3 +100,4 @@ public class goBitches
   }
 
 }
+
