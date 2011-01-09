@@ -14,6 +14,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.security.SecureRandom;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -21,6 +22,25 @@ import java.util.regex.Pattern;
 
 public class goBitches
 {
+  private SecureRandom random;
+
+  public goBitches()
+  {
+    try
+    {
+      random = SecureRandom. getInstance("SHA1PRNG");
+    }
+    catch(Exception e)
+    {
+    }
+
+    if (null == random)
+    {
+      random = new SecureRandom();
+      random.setSeed(System.currentTimeMillis()/666);
+    }
+  }
+
   public String getTheBitch(String inurl, String agent)
   {
     String bitchesUrl;
@@ -29,11 +49,7 @@ public class goBitches
       String filename = inurl.split("/")[4];
       String victim = inurl.split("/")[2].replace(".wrzuta.pl", "");
 
-      Random random = new Random();
-      random.setSeed(System.currentTimeMillis());
-
       String requestUrl = "http://" + victim + ".wrzuta.pl/xml/plik/" + filename + "/wrzuta.pl/undefined/" + Math.abs(random.nextInt());
-
 
       URL url = new URL(requestUrl);
       URLConnection urlc = url.openConnection();
