@@ -70,12 +70,22 @@ public class wrzutaGet
         {
           String dl;
           dl = bitches.getTheBitch(strLine, "bitch");
-          if (null != outfile)
+          // do we have the new url ?
+          if (null != dl)
           {
-            outfile.write(dl);
-            outfile.write(System.getProperty("line.separator"));
+            // shall I write it to the output file ?
+            if (null != outfile)
+            {
+              outfile.write(dl);
+              outfile.write(System.getProperty("line.separator"));
+            }
+            else
+            {
+              System.out.println(dl);
+            }
             count++;
           }
+          // if not, print an error message.
           else
           {
             System.err.println("Skipping: '" + strLine + "', wrong URL type");
