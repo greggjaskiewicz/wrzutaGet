@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="wykopget" default="all">
+<project name="wrzutaget" default="all">
   
   
-  <property file="wykopget.properties"/>
   <!-- Uncomment the following property if no tests compilation is needed -->
   <!-- 
   <property name="skip.tests" value="true"/>
@@ -56,93 +55,93 @@
   <!-- Modules -->
   
   
-  <!-- Module wykopGet -->
+  <!-- Module wrzutaGet -->
   
-  <dirname property="module.wykopget.basedir" file="${ant.file}"/>
+  <dirname property="module.wrzutaget.basedir" file="${ant.file}"/>
   
   
   
-  <property name="compiler.args.wykopget" value="${compiler.args}"/>
+  <property name="compiler.args.wrzutaget" value="${compiler.args}"/>
   
-  <property name="wykopget.output.dir" value="${module.wykopget.basedir}/out/production/wykopGet"/>
-  <property name="wykopget.testoutput.dir" value="${module.wykopget.basedir}/out/test/wykopGet"/>
+  <property name="wrzutaget.output.dir" value="${module.wrzutaget.basedir}/out/production/wrzutaGet"/>
+  <property name="wrzutaget.testoutput.dir" value="${module.wrzutaget.basedir}/out/test/wrzutaGet"/>
   
-  <path id="wykopget.module.bootclasspath">
+  <path id="wrzutaget.module.bootclasspath">
     <!-- Paths to be included in compilation bootclasspath -->
   </path>
   
-  <path id="wykopget.module.production.classpath"/>
+  <path id="wrzutaget.module.production.classpath"/>
   
-  <path id="wykopget.runtime.production.module.classpath">
-    <pathelement location="${wykopget.output.dir}"/>
+  <path id="wrzutaget.runtime.production.module.classpath">
+    <pathelement location="${wrzutaget.output.dir}"/>
   </path>
   
-  <path id="wykopget.module.classpath">
-    <pathelement location="${wykopget.output.dir}"/>
+  <path id="wrzutaget.module.classpath">
+    <pathelement location="${wrzutaget.output.dir}"/>
   </path>
   
-  <path id="wykopget.runtime.module.classpath">
-    <pathelement location="${wykopget.testoutput.dir}"/>
-    <pathelement location="${wykopget.output.dir}"/>
+  <path id="wrzutaget.runtime.module.classpath">
+    <pathelement location="${wrzutaget.testoutput.dir}"/>
+    <pathelement location="${wrzutaget.output.dir}"/>
   </path>
   
   
-  <patternset id="excluded.from.module.wykopget">
+  <patternset id="excluded.from.module.wrzutaget">
     <patternset refid="ignored.files"/>
   </patternset>
   
-  <patternset id="excluded.from.compilation.wykopget">
-    <patternset refid="excluded.from.module.wykopget"/>
+  <patternset id="excluded.from.compilation.wrzutaget">
+    <patternset refid="excluded.from.module.wrzutaget"/>
   </patternset>
   
-  <path id="wykopget.module.sourcepath">
-    <dirset dir="${module.wykopget.basedir}/wykopGet">
+  <path id="wrzutaget.module.sourcepath">
+    <dirset dir="${module.wrzutaget.basedir}/wrzutaGet">
       <include name="src"/>
     </dirset>
   </path>
   
   
-  <target name="compile.module.wykopget" depends="compile.module.wykopget.production,compile.module.wykopget.tests" description="Compile module wykopGet"/>
+  <target name="compile.module.wrzutaget" depends="compile.module.wrzutaget.production,compile.module.wrzutaget.tests" description="Compile module wrzutaGet"/>
   
-  <target name="compile.module.wykopget.production" description="Compile module wykopGet; production classes">
-    <mkdir dir="${wykopget.output.dir}"/>
-    <javac destdir="${wykopget.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
-      <compilerarg line="${compiler.args.wykopget}"/>
-      <bootclasspath refid="wykopget.module.bootclasspath"/>
-      <classpath refid="wykopget.module.production.classpath"/>
-      <src refid="wykopget.module.sourcepath"/>
-      <patternset refid="excluded.from.compilation.wykopget"/>
+  <target name="compile.module.wrzutaget.production" description="Compile module wrzutaGet; production classes">
+    <mkdir dir="${wrzutaget.output.dir}"/>
+    <javac destdir="${wrzutaget.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
+      <compilerarg line="${compiler.args.wrzutaget}"/>
+      <bootclasspath refid="wrzutaget.module.bootclasspath"/>
+      <classpath refid="wrzutaget.module.production.classpath"/>
+      <src refid="wrzutaget.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.wrzutaget"/>
     </javac>
     
-    <copy todir="${wykopget.output.dir}">
-      <fileset dir="${module.wykopget.basedir}/wykopGet/src">
+    <copy todir="${wrzutaget.output.dir}">
+      <fileset dir="${module.wrzutaget.basedir}/wrzutaGet/src">
         <patternset refid="compiler.resources"/>
         <type type="file"/>
       </fileset>
     </copy>
   </target>
   
-  <target name="compile.module.wykopget.tests" depends="compile.module.wykopget.production" description="compile module wykopGet; test classes" unless="skip.tests"/>
+  <target name="compile.module.wrzutaget.tests" depends="compile.module.wrzutaget.production" description="compile module wrzutaGet; test classes" unless="skip.tests"/>
   
-  <target name="clean.module.wykopget" description="cleanup module">
-    <delete dir="${wykopget.output.dir}"/>
-    <delete dir="${wykopget.testoutput.dir}"/>
+  <target name="clean.module.wrzutaget" description="cleanup module">
+    <delete dir="${wrzutaget.output.dir}"/>
+    <delete dir="${wrzutaget.testoutput.dir}"/>
   </target>
   
   <target name="init" description="Build initialization">
     <!-- Perform any build initialization in this target -->
   </target>
   
-  <target name="clean" depends="clean.module.wykopget" description="cleanup all"/>
+  <target name="clean" depends="clean.module.wrzutaget" description="cleanup all"/>
 
-  <jar destfile="wykopGet.jar" basedir="${wykopget.output.dir}">
+  <jar destfile="wrzutaGet.jar" basedir="${wrzutaget.output.dir}">
     <manifest>
       <attribute name="Main-Class"
-            value="WykopGet"/>
+            value="wrzutaGet"/>
     </manifest>
   </jar>
   
-  <target name="build.modules" depends="init, clean, compile.module.wykopget" description="build all modules"/>
+  <target name="build.modules" depends="init, clean, compile.module.wrzutaget" description="build all modules"/>
   
   <target name="all" depends="build.modules" description="build all"/>
 </project>
