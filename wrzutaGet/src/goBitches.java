@@ -28,7 +28,7 @@ public class goBitches
     {
       random = SecureRandom.getInstance("SHA1PRNG");
     }
-    catch (Exception e)
+    catch (Exception ignored)
     {
     }
 
